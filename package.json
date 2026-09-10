@@ -1,0 +1,79 @@
+{
+  "name": "@youdotcom-oss/ai-sdk-plugin",
+  "version": "3.0.1",
+  "description": "Vercel AI SDK tools for the hosted You.com MCP server",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18",
+    "bun": ">= 1.2.21"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/youdotcom-oss/ai-sdk-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/youdotcom-oss/ai-sdk-plugin/issues"
+  },
+  "homepage": "https://github.com/youdotcom-oss/ai-sdk-plugin#readme",
+  "author": "You.com (https://you.com)",
+  "keywords": [
+    "ai",
+    "sdk",
+    "plugin",
+    "you",
+    "search",
+    "mcp",
+    "vercel",
+    "model-context-protocol",
+    "ai-agents",
+    "web-search"
+  ],
+  "type": "module",
+  "main": "./dist/main.js",
+  "exports": {
+    ".": {
+      "types": "./dist/main.d.ts",
+      "default": "./dist/main.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "bun run build:bundle && bun run build:types",
+    "build:bundle": "bun build src/main.ts --outdir dist --target node --external ai",
+    "build:types": "tsc --project tsconfig.build.json --declaration --emitDeclarationOnly --noEmit false",
+    "check": "bun run check:biome && bun run check:types",
+    "check:biome": "bunx biome check",
+    "check:types": "tsc --noEmit",
+    "check:write": "bunx biome check --write",
+    "prepublishOnly": "bun run build",
+    "test": "bun test",
+    "test:coverage": "bun test --coverage",
+    "test:coverage:watch": "bun test --coverage --watch",
+    "test:watch": "bun test --watch"
+  },
+  "types": "./dist/main.d.ts",
+  "dependencies": {
+    "@ai-sdk/mcp": "^2.0.34"
+  },
+  "peerDependencies": {
+    "ai": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "ai": "^7.0.70"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "biome check --write --no-errors-on-unmatched"
+    ],
+    "*.{json,md}": [
+      "biome format --write --no-errors-on-unmatched"
+    ]
+  },
+  "prepare": "git config core.hooksPath .hooks"
+}
