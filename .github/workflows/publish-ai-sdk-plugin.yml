@@ -101,7 +101,6 @@ jobs:
 
       - name: Publish to npm
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
           VERSION: ${{ steps.set_version.outputs.version }}
         run: |
           npm publish --provenance --access public
