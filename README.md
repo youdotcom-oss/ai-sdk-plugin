@@ -233,7 +233,7 @@ Optional tools:
 
 `profile` selects a hosted server profile. `tools` scopes which tools are visible. If `profile` is provided, it takes precedence over `tools`.
 
-Today, `profile: 'free'` is a search-only mode. It overrides `tools` and does not expose `you-contents`, `you-research`, `you-finance`, `you-balance`, `you-discover`, or livecrawl.
+Today, `profile: 'free'` is a keyless mode. It overrides `tools` and exposes `you-search` and `you-discover`.
 
 ### Using different model providers
 
